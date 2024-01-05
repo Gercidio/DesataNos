@@ -41,7 +41,26 @@ public class Usuario {
 
 	@OneToMany(fetch = FetchType.LAZY, mappedBy = "usuario", cascade = CascadeType.REMOVE)
 	@JsonIgnoreProperties("usuario")
-	private List<Produto> postagem;
+	private List<Produto> produto;
+	
+	
+
+	public Usuario(Long id, @NotNull(message = "O Atributo Nome é Obrigatório!") String nome,
+			@NotNull(message = "O Atributo Usuário é Obrigatório!") @Email(message = "O Atributo Usuário deve ser um email válido!") String usuario,
+			@NotBlank(message = "O Atributo Senha é Obrigatório!") @Size(min = 8, message = "A Senha deve ter no mínimo 8 caracteres") String senha,
+			@Size(max = 5000, message = "O link da foto não pode ser maior do que 5000 caracteres") String foto) {
+		super();
+		this.id = id;
+		this.nome = nome;
+		this.usuario = usuario;
+		this.senha = senha;
+		this.foto = foto;
+	}
+	
+	
+
+	public Usuario() {	}
+
 
 	/* Insira os Getters and Setters */
 
@@ -85,12 +104,12 @@ public class Usuario {
 		this.foto = foto;
 	}
 
-	public List<Produto> getPostagem() {
-		return postagem;
+	public List<Produto> getProduto() {
+		return produto;
 	}
 
-	public void setPostagem(List<Produto> postagem) {
-		this.postagem = postagem;
+	public void setProduto(List<Produto> produto) {
+		this.produto = produto;
 	}
 
 
